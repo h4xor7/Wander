@@ -46,7 +46,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val homeLatLng =LatLng(latitude,longitude)
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(homeLatLng,zoomLevel))
         map.addMarker(MarkerOptions().position(homeLatLng))
-
+        setMapLongClick(map)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -76,4 +76,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
         else -> super.onOptionsItemSelected(item)
     }
+
+    private fun setMapLongClick(map:GoogleMap) {
+        map.setOnMapLongClickListener { latLng ->
+            map.addMarker(
+                    MarkerOptions()
+                            .position(latLng)
+            )
+        }
+    }
+
+
+
 }
